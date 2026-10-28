@@ -1,24 +1,175 @@
-# 🏭 codesys-sorting-station-plc
-Automated sorting station developed in CODESYS using Ladder Diagram (LD) and integrated HMI.
+# 🏭 CODESYS Sorting Station PLC
 
-## 📋 Overview
-This repository contains the automation logic and HMI implementation for an **Automated Sorting Station**, developed entirely within the **CODESYS V3.5** environment using **Ladder Diagram (LD)** 
-
-The project focuses on a standalone PLC and HMI architecture, managing a conveyor belt system, sensor-based material detection, pneumatic actuators for sorting, and real-time production tracking.
+Automated sorting station developed in **CODESYS V3.5** using **Ladder Diagram (LD)**, **Structured Text (ST)** and an integrated **HMI Visualization**.
 
 ---
 
-## ⚡ Control Logic & Key Features
-The PLC program implemented within `PLC_PRG` and global variable lists (`GVL`) handles the following core functionalities:
-- **System Management & Safety:** Start, Stop, Emergency Stop, and Reset routines, alongside system status flags (`GVL_System_Run`, `GVL_System_Alarm`, `GVL_Green_Light`).
-- **Conveyor & Trigger Control:** Management of the conveyor motor and rising edge detection (`R_TRIG`) linked to the presence sensor (`Trig_Presence`).
-- **Material Classification:** Evaluation of piece characteristics using inductive and height sensors (`GVL_Sensor_Inductive`, `GVL_Sensor_Height`) to assign a specific type code (`Piece_Type`).
-- **Pneumatic Sorting Actuation:** Precise timing configurations (`TON` blocks) to control sorting mechanisms via dedicated pistons (`GVL_Piston_Metal`, `GVL_Piston_Plastic_Large`, `GVL_Piston_Plastic_Small`).
-- **Production Counting:** Up-counters (`CTU`) tracking processed parts per category and total volume (`Counter_Metal`, `Counter_Plastic_Large`, `Counter_Plastic_Small`, `Counter_Total`).
+## 📋 Project Overview
+
+This project simulates an automated material sorting station controlled by a PLC.
+
+The system detects incoming parts, classifies them according to sensor inputs, activates dedicated pneumatic sorting pistons, and tracks production statistics through a real-time HMI.
 
 ---
 
-## 🛠️ System Architecture
-- **PLC Environment:** CODESYS V3.5
-- **Programming Language:** Ladder Diagram (LD) - IEC 61131-3
-- **HMI:** Integrated CODESYS Visualization for local operator control and monitoring.
+## 🚀 Features
+
+✅ Start / Stop control
+
+✅ Emergency Stop & Reset
+
+✅ Conveyor Belt Management
+
+✅ Material Classification
+
+✅ Pneumatic Sorting System
+
+✅ Production Counters (CTU)
+
+✅ Sensor Simulation in Structured Text
+
+✅ Integrated HMI Visualization
+
+---
+
+## 🎥 HMI Demonstration
+
+![HMI Demo](assets/hmi_demo.gif)
+
+The HMI allows the operator to:
+
+- Start and stop the system
+- Trigger emergency and reset functions
+- Monitor system status
+- Visualize piston activations
+- Monitor real-time production counters
+
+---
+
+## ⚡ PLC Logic
+
+### Start / Stop & Safety Logic
+
+![Start Stop Logic](assets/ladder_start_stop.png)
+
+This section manages:
+
+- Start / Stop commands
+- Emergency Stop
+- Alarm handling
+- Self-holding (latching) circuit
+- Conveyor activation
+
+---
+
+### Material Classification Logic
+
+![Classification Logic](assets/ladder_classification.png)
+
+Parts are classified using:
+
+- Presence Sensor
+- Inductive Sensor
+- Height Sensor
+- Rising Edge Detection (R_TRIG)
+
+The system assigns the detected part to a specific category using the `Piece_Type` variable.
+
+---
+
+### Sorting & Production Counting
+
+![Sorting Logic](assets/ladder_sorting.png)
+
+Sorting logic includes:
+
+- TON timers
+- Pneumatic piston activation
+- CTU counters
+- Production statistics
+
+---
+
+## ⚙️ Structured Text Simulation
+
+![Structured Text Logic](assets/st_simulation.png)
+
+A Structured Text module automatically generates virtual parts for testing and demonstration purposes.
+
+Functions implemented:
+
+- Cyclic part generation
+- Sensor simulation
+- Piece type selection
+- Presence pulse generation
+- Automatic testing of the sorting process
+
+---
+
+## 📊 Variable Structure
+
+![GVL Variables](assets/gvl.png)
+
+Main variables include:
+
+- `System_Run`
+- `System_Alarm`
+- `Sensor_Presence`
+- `Sensor_Inductive`
+- `Sensor_Height`
+- `Piston_Metal`
+- `Piston_Plastic_Large`
+- `Piston_Plastic_Small`
+- `Count_Metal`
+- `Count_Plastic_Large`
+- `Count_Plastic_Small`
+- `Count_Total`
+
+---
+
+## 🛠️ Technologies Used
+
+- CODESYS V3.5
+- Ladder Diagram (LD)
+- Structured Text (ST)
+- IEC 61131-3
+- HMI Visualization
+- TON Timers
+- CTU Counters
+- R_TRIG Edge Detection
+
+---
+
+## 📂 Repository Structure
+
+```text
+codesys-sorting-station-plc/
+│
+├── README.md
+├── assets/
+│   ├── hmi_demo.gif
+│   ├── ladder_start_stop.png
+│   ├── ladder_classification.png
+│   ├── ladder_sorting.png
+│   ├── st_simulation.png
+│   └── gvl.png
+│
+└── project/
+    └── sorting_station.project
+```
+
+---
+
+## 📈 Skills Demonstrated
+
+- PLC Programming
+- Industrial Automation
+- Ladder Logic Development
+- Structured Text Programming
+- HMI Design
+- Sensor Integration
+- Pneumatic Actuator Control
+- Production Monitoring
+- Industrial Safety Logic
+
+---
